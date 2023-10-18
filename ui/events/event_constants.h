@@ -53,7 +53,7 @@ constexpr EventFlags EF_MOUSE_BUTTON =
 #if BUILDFLAG(IS_APPLE)
 constexpr EventFlags EF_PLATFORM_ACCELERATOR = EF_COMMAND_DOWN;
 #else
-constexpr EventFlags EF_PLATFORM_ACCELERATOR = EF_CONTROL_DOWN;
+constexpr EventFlags EF_PLATFORM_ACCELERATOR = EF_COMMAND_DOWN;
 #endif
 
 // Flags specific to key events.
