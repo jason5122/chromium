@@ -257,14 +257,6 @@ const AcceleratorMapping kAcceleratorMap[] = {
 
 const AcceleratorMapping kDevToolsAcceleratorMap[] = {
     {ui::VKEY_F12, ui::EF_NONE, IDC_DEV_TOOLS_TOGGLE},
-#if !BUILDFLAG(IS_MAC)
-    {ui::VKEY_I, ui::EF_SHIFT_DOWN | ui::EF_CONTROL_DOWN, IDC_DEV_TOOLS},
-    {ui::VKEY_J, ui::EF_SHIFT_DOWN | ui::EF_CONTROL_DOWN,
-     IDC_DEV_TOOLS_CONSOLE},
-    {ui::VKEY_C, ui::EF_SHIFT_DOWN | ui::EF_CONTROL_DOWN,
-     IDC_DEV_TOOLS_INSPECT},
-    {ui::VKEY_U, ui::EF_CONTROL_DOWN, IDC_VIEW_SOURCE},
-#endif  // !BUILDFLAG(IS_MAC)
 };
 
 #if BUILDFLAG(IS_CHROMEOS_ASH)

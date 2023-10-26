@@ -87,22 +87,12 @@ struct DomKeyKeyDownEntry {
 const KeyboardCodeKeyDownEntry kKeyboardCodeKeyDownEntries[] = {
     {VKEY_LEFT, 0, "MoveLeft"},
     {VKEY_LEFT, kShiftKey, "MoveLeftAndModifySelection"},
-#if BUILDFLAG(IS_MAC)
-    {VKEY_LEFT, kOptionKey, "MoveWordLeft"},
-    {VKEY_LEFT, kOptionKey | kShiftKey, "MoveWordLeftAndModifySelection"},
-#else
-    {VKEY_LEFT, kCtrlKey, "MoveWordLeft"},
-    {VKEY_LEFT, kCtrlKey | kShiftKey, "MoveWordLeftAndModifySelection"},
-#endif
+    {VKEY_LEFT, kAltKey, "MoveWordLeft"},
+    {VKEY_LEFT, kAltKey | kShiftKey, "MoveWordLeftAndModifySelection"},
     {VKEY_RIGHT, 0, "MoveRight"},
     {VKEY_RIGHT, kShiftKey, "MoveRightAndModifySelection"},
-#if BUILDFLAG(IS_MAC)
-    {VKEY_RIGHT, kOptionKey, "MoveWordRight"},
-    {VKEY_RIGHT, kOptionKey | kShiftKey, "MoveWordRightAndModifySelection"},
-#else
-    {VKEY_RIGHT, kCtrlKey, "MoveWordRight"},
-    {VKEY_RIGHT, kCtrlKey | kShiftKey, "MoveWordRightAndModifySelection"},
-#endif
+    {VKEY_RIGHT, kAltKey, "MoveWordRight"},
+    {VKEY_RIGHT, kAltKey | kShiftKey, "MoveWordRightAndModifySelection"},
     {VKEY_UP, 0, "MoveUp"},
     {VKEY_UP, kShiftKey, "MoveUpAndModifySelection"},
     {VKEY_PRIOR, kShiftKey, "MovePageUpAndModifySelection"},
@@ -110,49 +100,40 @@ const KeyboardCodeKeyDownEntry kKeyboardCodeKeyDownEntries[] = {
     {VKEY_DOWN, kShiftKey, "MoveDownAndModifySelection"},
     {VKEY_NEXT, kShiftKey, "MovePageDownAndModifySelection"},
 #if !BUILDFLAG(IS_MAC)
-    {VKEY_UP, kCtrlKey, "MoveParagraphBackward"},
-    {VKEY_UP, kCtrlKey | kShiftKey, "MoveParagraphBackwardAndModifySelection"},
-    {VKEY_DOWN, kCtrlKey, "MoveParagraphForward"},
-    {VKEY_DOWN, kCtrlKey | kShiftKey, "MoveParagraphForwardAndModifySelection"},
-    {VKEY_PRIOR, 0, "MovePageUp"},
-    {VKEY_NEXT, 0, "MovePageDown"},
+    {VKEY_UP, kMetaKey, "MoveToBeginningOfDocument"},
+    {VKEY_UP, kMetaKey | kShiftKey, "MoveToBeginningOfDocumentAndModifySelection"},
+    {VKEY_DOWN, kMetaKey, "MoveToEndOfDocument"},
+    {VKEY_DOWN, kMetaKey | kShiftKey, "MoveToEndOfDocumentAndModifySelection"},
+    {VKEY_LEFT, kMetaKey, "MoveToBeginningOfLine"},
+    {VKEY_LEFT, kMetaKey | kShiftKey, "MoveToBeginningOfLineAndModifySelection"},
+    {VKEY_RIGHT, kMetaKey, "MoveToEndOfLine"},
+    {VKEY_RIGHT, kMetaKey | kShiftKey, "MoveToEndOfLineAndModifySelection"},
+    {VKEY_PRIOR, 0, "MoveUp"},
+    {VKEY_NEXT, 0, "MoveDown"},
 #endif
     {VKEY_HOME, 0, "MoveToBeginningOfLine"},
     {VKEY_HOME, kShiftKey, "MoveToBeginningOfLineAndModifySelection"},
-#if BUILDFLAG(IS_MAC)
-    {VKEY_PRIOR, kOptionKey, "MovePageUp"},
-    {VKEY_NEXT, kOptionKey, "MovePageDown"},
-#endif
+    {VKEY_PRIOR, kAltKey, "MovePageUp"},
+    {VKEY_NEXT, kAltKey, "MovePageDown"},
 #if !BUILDFLAG(IS_MAC)
-    {VKEY_HOME, kCtrlKey, "MoveToBeginningOfDocument"},
-    {VKEY_HOME, kCtrlKey | kShiftKey,
+    {VKEY_HOME, kMetaKey, "MoveToBeginningOfDocument"},
+    {VKEY_HOME, kMetaKey | kShiftKey,
      "MoveToBeginningOfDocumentAndModifySelection"},
 #endif
     {VKEY_END, 0, "MoveToEndOfLine"},
     {VKEY_END, kShiftKey, "MoveToEndOfLineAndModifySelection"},
 #if !BUILDFLAG(IS_MAC)
-    {VKEY_END, kCtrlKey, "MoveToEndOfDocument"},
-    {VKEY_END, kCtrlKey | kShiftKey, "MoveToEndOfDocumentAndModifySelection"},
+    {VKEY_END, kMetaKey, "MoveToEndOfDocument"},
+    {VKEY_END, kMetaKey | kShiftKey, "MoveToEndOfDocumentAndModifySelection"},
 #endif
     {VKEY_BACK, 0, "DeleteBackward"},
     {VKEY_BACK, kShiftKey, "DeleteBackward"},
     {VKEY_DELETE, 0, "DeleteForward"},
-#if BUILDFLAG(IS_MAC)
-    {VKEY_BACK, kOptionKey, "DeleteWordBackward"},
-    {VKEY_DELETE, kOptionKey, "DeleteWordForward"},
-#else
-    {VKEY_BACK, kCtrlKey, "DeleteWordBackward"},
-    {VKEY_DELETE, kCtrlKey, "DeleteWordForward"},
-#endif
-#if BUILDFLAG(IS_MAC)
-    {'B', kCommandKey, "ToggleBold"},
-    {'I', kCommandKey, "ToggleItalic"},
-    {'U', kCommandKey, "ToggleUnderline"},
-#else
-    {'B', kCtrlKey, "ToggleBold"},
-    {'I', kCtrlKey, "ToggleItalic"},
-    {'U', kCtrlKey, "ToggleUnderline"},
-#endif
+    {VKEY_BACK, kAltKey, "DeleteWordBackward"},
+    {VKEY_DELETE, kAltKey, "DeleteWordForward"},
+    {'B', kMetaKey, "ToggleBold"},
+    {'I', kMetaKey, "ToggleItalic"},
+    {'U', kMetaKey, "ToggleUnderline"},
     {VKEY_ESCAPE, 0, "Cancel"},
     {VKEY_OEM_PERIOD, kCtrlKey, "Cancel"},
     {VKEY_TAB, 0, "InsertTab"},
@@ -168,14 +149,14 @@ const KeyboardCodeKeyDownEntry kKeyboardCodeKeyDownEntries[] = {
 #if !BUILDFLAG(IS_MAC)
     // On OS X, we pipe these back to the browser, so that it can do menu item
     // blinking.
-    {'C', kCtrlKey, "Copy"},
-    {'V', kCtrlKey, "Paste"},
-    {'V', kCtrlKey | kShiftKey, "PasteAndMatchStyle"},
-    {'X', kCtrlKey, "Cut"},
-    {'A', kCtrlKey, "SelectAll"},
-    {'Z', kCtrlKey, "Undo"},
-    {'Z', kCtrlKey | kShiftKey, "Redo"},
-    {'Y', kCtrlKey, "Redo"},
+    {'C', kMetaKey, "Copy"},
+    {'V', kMetaKey, "Paste"},
+    {'V', kMetaKey | kShiftKey, "PasteAndMatchStyle"},
+    {'X', kMetaKey, "Cut"},
+    {'A', kMetaKey, "SelectAll"},
+    {'Z', kMetaKey, "Undo"},
+    {'Z', kMetaKey | kShiftKey, "Redo"},
+    {'Y', kMetaKey, "Redo"},
 #endif
 #if BUILDFLAG(IS_WIN)
     {VKEY_BACK, kAltKey, "Undo"},
@@ -185,6 +166,21 @@ const KeyboardCodeKeyDownEntry kKeyboardCodeKeyDownEntries[] = {
 #if BUILDFLAG(IS_ANDROID)
     {VKEY_BACK, kAltKey, "DeleteToBeginningOfLine"},
 #endif
+    // custom
+    {VKEY_BACK, kMetaKey, "DeleteToBeginningOfLine"},
+    {VKEY_DELETE, kMetaKey, "DeleteToEndOfLine"},
+    {'A', kCtrlKey, "MoveToBeginningOfLine"},
+    {'A', kCtrlKey | kShiftKey, "MoveToBeginningOfLineAndModifySelection"},
+    {'E', kCtrlKey, "MoveToEndOfLine"},
+    {'E', kCtrlKey | kShiftKey, "MoveToEndOfLineAndModifySelection"},
+    {'B', kCtrlKey, "MoveLeft"},
+    {'B', kCtrlKey | kShiftKey, "MoveLeftAndModifySelection"},
+    {'F', kCtrlKey, "MoveRight"},
+    {'F', kCtrlKey | kShiftKey, "MoveRightAndModifySelection"},
+    {'P', kCtrlKey, "MoveUp"},
+    {'P', kCtrlKey | kShiftKey, "MoveUpAndModifySelection"},
+    {'N', kCtrlKey, "MoveDown"},
+    {'N', kCtrlKey | kShiftKey, "MoveDownAndModifySelection"},
 };
 
 const KeyboardCodeKeyPressEntry kKeyboardCodeKeyPressEntries[] = {
