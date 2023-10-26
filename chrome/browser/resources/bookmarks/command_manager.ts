@@ -108,24 +108,24 @@ export class BookmarksCommandManagerElement extends
     this.shortcuts_ = new Map();
 
     this.addShortcut_(Command.EDIT, 'F2', 'Enter');
-    this.addShortcut_(Command.DELETE, 'Delete', 'Delete Backspace');
+    this.addShortcut_(Command.DELETE, 'Delete Backspace', 'Delete Backspace');
 
     this.addShortcut_(Command.OPEN, 'Enter', 'Meta|o');
-    this.addShortcut_(Command.OPEN_NEW_TAB, 'Ctrl|Enter', 'Meta|Enter');
+    this.addShortcut_(Command.OPEN_NEW_TAB, 'Meta|Enter', 'Meta|Enter');
     this.addShortcut_(Command.OPEN_NEW_WINDOW, 'Shift|Enter');
 
     // Note: the undo shortcut is also defined in bookmarks_ui.cc
     // TODO(b/893033): de-duplicate shortcut by moving all shortcut
     // definitions from JS to C++.
-    this.addShortcut_(Command.UNDO, 'Ctrl|z', 'Meta|z');
-    this.addShortcut_(Command.REDO, 'Ctrl|y Ctrl|Shift|Z', 'Meta|Shift|Z');
+    this.addShortcut_(Command.UNDO, 'Meta|z', 'Meta|z');
+    this.addShortcut_(Command.REDO, 'Meta|y Meta|Shift|Z', 'Meta|Shift|Z');
 
-    this.addShortcut_(Command.SELECT_ALL, 'Ctrl|a', 'Meta|a');
+    this.addShortcut_(Command.SELECT_ALL, 'Meta|a', 'Meta|a');
     this.addShortcut_(Command.DESELECT_ALL, 'Escape');
 
-    this.addShortcut_(Command.CUT, 'Ctrl|x', 'Meta|x');
-    this.addShortcut_(Command.COPY, 'Ctrl|c', 'Meta|c');
-    this.addShortcut_(Command.PASTE, 'Ctrl|v', 'Meta|v');
+    this.addShortcut_(Command.CUT, 'Meta|x', 'Meta|x');
+    this.addShortcut_(Command.COPY, 'Meta|c', 'Meta|c');
+    this.addShortcut_(Command.PASTE, 'Meta|v', 'Meta|v');
 
     this.eventTracker_.add(document, 'open-command-menu', (e: Event) =>
                            this.onOpenCommandMenu_(
