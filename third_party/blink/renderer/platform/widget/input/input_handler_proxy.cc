@@ -652,12 +652,7 @@ void InputHandlerProxy::InjectScrollbarGestureScroll(
 }
 
 bool HasScrollbarJumpKeyModifier(const WebInputEvent& event) {
-#if BUILDFLAG(IS_MAC)
-  // Mac uses the "Option" key (which is mapped to the enum "kAltKey").
   return event.GetModifiers() & WebInputEvent::kAltKey;
-#else
-  return event.GetModifiers() & WebInputEvent::kShiftKey;
-#endif
 }
 
 InputHandlerProxy::EventDisposition

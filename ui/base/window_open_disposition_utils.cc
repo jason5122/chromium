@@ -16,12 +16,7 @@ WindowOpenDisposition DispositionFromClick(
     bool meta_key,
     bool shift_key,
     WindowOpenDisposition disposition_for_current_tab) {
-  // MacOS uses meta key (Command key) to spawn new tabs.
-#if BUILDFLAG(IS_APPLE)
   if (middle_button || meta_key)
-#else
-  if (middle_button || ctrl_key)
-#endif
     return shift_key ? WindowOpenDisposition::NEW_FOREGROUND_TAB
                      : WindowOpenDisposition::NEW_BACKGROUND_TAB;
   if (shift_key)

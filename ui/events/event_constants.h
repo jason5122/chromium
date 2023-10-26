@@ -50,11 +50,7 @@ constexpr EventFlags EF_MOUSE_BUTTON =
 // An artificial value used to bridge platform differences.
 // Many commands on Mac as Cmd+Key are the counterparts of
 // Ctrl+Key on other platforms.
-#if BUILDFLAG(IS_APPLE)
 constexpr EventFlags EF_PLATFORM_ACCELERATOR = EF_COMMAND_DOWN;
-#else
-constexpr EventFlags EF_PLATFORM_ACCELERATOR = EF_COMMAND_DOWN;
-#endif
 
 // Flags specific to key events.
 // WARNING: If you add or remove values make sure traits for serializing these
