@@ -134,16 +134,9 @@ export class PasswordManagerAppElement extends PasswordManagerAppElementBase {
     super.ready();
 
     document.addEventListener('keydown', e => {
-      // <if expr="is_macosx">
       if (e.metaKey && e.key === 'z') {
         this.onUndoKeyBinding_(e);
       }
-      // </if>
-      // <if expr="not is_macosx">
-      if (e.ctrlKey && e.key === 'z') {
-        this.onUndoKeyBinding_(e);
-      }
-      // </if>
     });
 
     // Lazy-create the drawer the first time it is opened or swiped into view.
