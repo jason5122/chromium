@@ -27,7 +27,7 @@ export const FindShortcutManager = (() => {
    */
   let modalContextOpen = false;
 
-  const shortcutCtrlF = new KeyboardShortcutList(isMac ? 'meta|f' : 'ctrl|f');
+  const shortcutCtrlF = new KeyboardShortcutList(isMac ? 'meta|f' : 'meta|f');
   const shortcutSlash = new KeyboardShortcutList('/');
 
   window.addEventListener('keydown', e => {
