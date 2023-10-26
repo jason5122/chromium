@@ -399,10 +399,7 @@ export class HistoryAppElement extends HistoryAppElementBase {
     }
 
     if (e.key === 'a' && !e.altKey && !e.shiftKey) {
-      let hasTriggerModifier = e.ctrlKey && !e.metaKey;
-      // <if expr="is_macosx">
-      hasTriggerModifier = !e.ctrlKey && e.metaKey;
-      // </if>
+      let hasTriggerModifier = !e.ctrlKey && e.metaKey;
       if (hasTriggerModifier && this.onSelectAllCommand_()) {
         e.preventDefault();
       }
