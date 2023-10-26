@@ -206,13 +206,6 @@ const AcceleratorMapping kAcceleratorMap[] = {
     {ui::VKEY_N, ui::EF_PLATFORM_ACCELERATOR, IDC_NEW_WINDOW},
     {ui::VKEY_T, ui::EF_SHIFT_DOWN | ui::EF_PLATFORM_ACCELERATOR,
      IDC_RESTORE_TAB},
-
-    // Alt by itself (or with just shift) is never used on Mac since it's used
-    // to generate non-ASCII characters. Such commands are given Mac-specific
-    // bindings as well. Mapping with just Alt appear here, and should have an
-    // alternative mapping in the block above.
-    {ui::VKEY_LEFT, ui::EF_ALT_DOWN, IDC_BACK},
-    {ui::VKEY_LEFT, ui::EF_ALTGR_DOWN, IDC_BACK},
 #if BUILDFLAG(ENABLE_PRINTING)
     {ui::VKEY_P, ui::EF_SHIFT_DOWN | ui::EF_CONTROL_DOWN, IDC_BASIC_PRINT},
 #endif  // ENABLE_PRINTING
@@ -223,8 +216,6 @@ const AcceleratorMapping kAcceleratorMap[] = {
     {ui::VKEY_E, ui::EF_CONTROL_DOWN, IDC_FOCUS_SEARCH},
     {ui::VKEY_K, ui::EF_CONTROL_DOWN, IDC_FOCUS_SEARCH},
     {ui::VKEY_T, ui::EF_SHIFT_DOWN | ui::EF_ALT_DOWN, IDC_FOCUS_TOOLBAR},
-    {ui::VKEY_RIGHT, ui::EF_ALT_DOWN, IDC_FORWARD},
-    {ui::VKEY_RIGHT, ui::EF_ALTGR_DOWN, IDC_FORWARD},
     {ui::VKEY_HOME, ui::EF_ALT_DOWN, IDC_HOME},
     {ui::VKEY_E, ui::EF_ALT_DOWN, IDC_SHOW_APP_MENU},
     {ui::VKEY_F, ui::EF_ALT_DOWN, IDC_SHOW_APP_MENU},

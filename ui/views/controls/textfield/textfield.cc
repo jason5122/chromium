@@ -2338,52 +2338,48 @@ ui::TextEditCommand Textfield::GetCommandForKeyEvent(
     return ui::TextEditCommand::INVALID_COMMAND;
 
   const bool shift = event.IsShiftDown();
-#if BUILDFLAG(IS_MAC)
   const bool command = event.IsCommandDown();
-#endif
-  const bool control = event.IsControlDown() || event.IsCommandDown();
+  const bool control = event.IsControlDown();
   const bool alt = event.IsAltDown() || event.IsAltGrDown();
   switch (event.key_code()) {
     case ui::VKEY_Z:
-      if (control && !shift && !alt)
+      if (command && !shift && !alt)
         return ui::TextEditCommand::UNDO;
-      return (control && shift && !alt) ? ui::TextEditCommand::REDO
+      return (command && shift && !alt) ? ui::TextEditCommand::REDO
                                         : ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_Y:
-      return (control && !alt) ? ui::TextEditCommand::REDO
+      return (command && !alt) ? ui::TextEditCommand::REDO
                                : ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_A:
-      return (control && !alt) ? ui::TextEditCommand::SELECT_ALL
+      return (command && !alt) ? ui::TextEditCommand::SELECT_ALL
                                : ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_X:
-      return (control && !alt) ? ui::TextEditCommand::CUT
+      return (command && !alt) ? ui::TextEditCommand::CUT
                                : ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_C:
-      return (control && !alt) ? ui::TextEditCommand::COPY
+      return (command && !alt) ? ui::TextEditCommand::COPY
                                : ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_V:
-      return (control && !alt) ? ui::TextEditCommand::PASTE
+      return (command && !alt) ? ui::TextEditCommand::PASTE
                                : ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_RIGHT:
-      // Ignore alt+right, which may be a browser navigation shortcut.
-      if (alt)
-        return ui::TextEditCommand::INVALID_COMMAND;
-      if (!shift) {
-        return control ? ui::TextEditCommand::MOVE_WORD_RIGHT
-                       : ui::TextEditCommand::MOVE_RIGHT;
-      }
-      return control ? ui::TextEditCommand::MOVE_WORD_RIGHT_AND_MODIFY_SELECTION
-                     : ui::TextEditCommand::MOVE_RIGHT_AND_MODIFY_SELECTION;
+      if (command)
+        return shift ? ui::TextEditCommand::MOVE_TO_END_OF_LINE_AND_MODIFY_SELECTION
+                     : ui::TextEditCommand::MOVE_TO_END_OF_LINE;
+      if (alt || control)
+        return shift ? ui::TextEditCommand::MOVE_WORD_RIGHT_AND_MODIFY_SELECTION
+                     : ui::TextEditCommand::MOVE_WORD_RIGHT;
+      return shift ? ui::TextEditCommand::MOVE_RIGHT_AND_MODIFY_SELECTION
+                   : ui::TextEditCommand::MOVE_RIGHT;
     case ui::VKEY_LEFT:
-      // Ignore alt+left, which may be a browser navigation shortcut.
-      if (alt)
-        return ui::TextEditCommand::INVALID_COMMAND;
-      if (!shift) {
-        return control ? ui::TextEditCommand::MOVE_WORD_LEFT
-                       : ui::TextEditCommand::MOVE_LEFT;
-      }
-      return control ? ui::TextEditCommand::MOVE_WORD_LEFT_AND_MODIFY_SELECTION
-                     : ui::TextEditCommand::MOVE_LEFT_AND_MODIFY_SELECTION;
+      if (command)
+        return shift ? ui::TextEditCommand::MOVE_TO_BEGINNING_OF_LINE_AND_MODIFY_SELECTION
+                     : ui::TextEditCommand::MOVE_TO_BEGINNING_OF_LINE;
+      if (alt || control)
+        return shift ? ui::TextEditCommand::MOVE_WORD_LEFT_AND_MODIFY_SELECTION
+                     : ui::TextEditCommand::MOVE_WORD_LEFT;
+      return shift ? ui::TextEditCommand::MOVE_LEFT_AND_MODIFY_SELECTION
+                   : ui::TextEditCommand::MOVE_LEFT;
     case ui::VKEY_HOME:
       if (shift) {
         return ui::TextEditCommand::
@@ -2434,29 +2430,17 @@ ui::TextEditCommand Textfield::GetCommandForKeyEvent(
                  : ui::TextEditCommand::INVALID_COMMAND;
 #endif
     case ui::VKEY_BACK:
-      if (!control) {
-#if BUILDFLAG(IS_WIN)
-        if (alt)
-          return shift ? ui::TextEditCommand::REDO : ui::TextEditCommand::UNDO;
-#endif
-        return ui::TextEditCommand::DELETE_BACKWARD;
-      }
-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-      // Only erase by line break on Linux and ChromeOS.
-      if (shift)
+      if (command)
         return ui::TextEditCommand::DELETE_TO_BEGINNING_OF_LINE;
-#endif
-      return ui::TextEditCommand::DELETE_WORD_BACKWARD;
+      if (control || alt)
+        return ui::TextEditCommand::DELETE_WORD_BACKWARD;
+      return ui::TextEditCommand::DELETE_BACKWARD;
     case ui::VKEY_DELETE:
-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-      // Only erase by line break on Linux and ChromeOS.
-      if (shift && control)
+      if (command)
         return ui::TextEditCommand::DELETE_TO_END_OF_LINE;
-#endif
-      if (control)
+      if (control || alt)
         return ui::TextEditCommand::DELETE_WORD_FORWARD;
-      return shift ? ui::TextEditCommand::CUT
-                   : ui::TextEditCommand::DELETE_FORWARD;
+      return ui::TextEditCommand::DELETE_FORWARD;
     case ui::VKEY_INSERT:
       if (control && !shift)
         return ui::TextEditCommand::COPY;
