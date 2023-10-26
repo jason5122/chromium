@@ -477,11 +477,7 @@ bool Tab::OnKeyReleased(const ui::KeyEvent& event) {
 
 namespace {
 bool IsSelectionModifierDown(const ui::MouseEvent& event) {
-#if BUILDFLAG(IS_MAC)
   return event.IsCommandDown();
-#else
-  return event.IsControlDown();
-#endif
 }
 }  // namespace
 
