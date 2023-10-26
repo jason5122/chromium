@@ -52,11 +52,7 @@ NavigationPolicy NavigationPolicyFromEventModifiers(int16_t button,
                                                     bool shift,
                                                     bool alt,
                                                     bool meta) {
-#if BUILDFLAG(IS_MAC)
   const bool new_tab_modifier = (button == 1) || meta;
-#else
-  const bool new_tab_modifier = (button == 1) || ctrl;
-#endif
   if (!new_tab_modifier && !shift && !alt)
     return kNavigationPolicyCurrentTab;
 
