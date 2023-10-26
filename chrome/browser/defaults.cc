@@ -46,11 +46,7 @@ const bool kShowHelpMenuItemIcon = false;
 
 const bool kDownloadPageHasShowInFolder = true;
 
-#if BUILDFLAG(IS_LINUX)
-const bool kScrollEventChangesTab = true;
-#else
 const bool kScrollEventChangesTab = false;
-#endif
 
 #if !BUILDFLAG(IS_ANDROID)
 const bool kPasswordEchoEnabled = false;
