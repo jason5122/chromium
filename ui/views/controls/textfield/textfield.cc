@@ -2351,34 +2351,34 @@ ui::TextEditCommand Textfield::GetCommandForKeyEvent(
       return (command && !alt) ? ui::TextEditCommand::REDO
                                : ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_A:
-      if (alt)
-        return ui::TextEditCommand::INVALID_COMMAND;
       if (command)
         return ui::TextEditCommand::SELECT_ALL;
-      if (control)
+      if (control && !alt)
         return shift ? ui::TextEditCommand::MOVE_TO_BEGINNING_OF_LINE_AND_MODIFY_SELECTION
                      : ui::TextEditCommand::MOVE_TO_BEGINNING_OF_LINE;
       return ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_E:
-      if (alt)
-        return ui::TextEditCommand::INVALID_COMMAND;
-      if (control)
+      if (control && !alt)
         return shift ? ui::TextEditCommand::MOVE_TO_END_OF_LINE_AND_MODIFY_SELECTION
                      : ui::TextEditCommand::MOVE_TO_END_OF_LINE;
       return ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_B:
-      if (alt)
-        return ui::TextEditCommand::INVALID_COMMAND;
-      if (control)
+      if (control && !alt)
         return shift ? ui::TextEditCommand::MOVE_LEFT_AND_MODIFY_SELECTION
                      : ui::TextEditCommand::MOVE_LEFT;
       return ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_F:
-      if (alt)
-        return ui::TextEditCommand::INVALID_COMMAND;
-      if (control)
+      if (control && !alt)
         return shift ? ui::TextEditCommand::MOVE_RIGHT_AND_MODIFY_SELECTION
                      : ui::TextEditCommand::MOVE_RIGHT;
+      return ui::TextEditCommand::INVALID_COMMAND;
+    case ui::VKEY_P:
+      if (control && !alt)
+        return ui::TextEditCommand::MOVE_UP;
+      return ui::TextEditCommand::INVALID_COMMAND;
+    case ui::VKEY_N:
+      if (control && !alt)
+        return ui::TextEditCommand::MOVE_DOWN;
       return ui::TextEditCommand::INVALID_COMMAND;
     case ui::VKEY_X:
       return (command && !alt) ? ui::TextEditCommand::CUT
