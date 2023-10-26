@@ -95,11 +95,7 @@ ui::ColorId selected_text_color_id(bool has_focus) {
 
 // Whether the platform "command" key is down.
 bool IsCmdOrCtrl(const ui::Event& event) {
-#if BUILDFLAG(IS_MAC)
   return event.IsCommandDown();
-#else
-  return event.IsControlDown();
-#endif
 }
 
 }  // namespace
