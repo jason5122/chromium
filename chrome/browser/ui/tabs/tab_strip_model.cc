@@ -2756,16 +2756,17 @@ absl::optional<int> TabStripModel::DetermineNewSelectedIndex(
   const absl::optional<tab_groups::TabGroupId> current_group =
       GetTabGroupForTab(removing_index);
   if (current_group.has_value()) {
-    // Match the default behavior below: prefer the tab to the right.
+    // Match the default behavior below: prefer the tab to the left.
+    const absl::optional<tab_groups::TabGroupId> left_group =
+        GetTabGroupForTab(removing_index - 1);
+    if (current_group == left_group)
+      return removing_index - 1;
+
     const absl::optional<tab_groups::TabGroupId> right_group =
         GetTabGroupForTab(removing_index + 1);
     if (current_group == right_group)
       return removing_index;
 
-    const absl::optional<tab_groups::TabGroupId> left_group =
-        GetTabGroupForTab(removing_index - 1);
-    if (current_group == left_group)
-      return removing_index - 1;
   }
 
   // At this point, the tab detaching is either not inside a group, or the last
