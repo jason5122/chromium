@@ -1,0 +1,68 @@
+ui/events/event_constants.h
+* set EF_PLATFORM_ACCELERATOR
+* line 53
+
+ui/views/controls/textfield/textfield.cc
+chrome/browser/ui/views/accelerator_table.cc
+chrome/browser/ui/cocoa/accelerators_cocoa.mm
+ui/events/keycodes/keyboard_codes_posix.h
+
+ui/events/event.h
+* line 122
+
+chrome/app/chrome_command_ids.h
+
+components/remote_cocoa/app_shim/bridged_content_view.mm
+* this is how Chromium reads macOS Emacs bindings!
+
+chrome/browser/resources/bookmarks/command_manager.ts
+* shortcuts for bookmark manager
+
+chrome/browser/resources/history/app.ts
+* shortcuts for history
+* line 402
+
+chrome/browser/resources/password_manager/password_manager_app.ts
+* shortcuts for password manager
+* line 137
+
+ui/webui/resources/cr_elements/find_shortcut_mixin.ts
+* find shortcut for UI settings pages (history, bookmarks, settings, etc.)
+* line 30
+
+chrome/browser/ui/views/tabs/tab.cc
+* modifier key for tab selection
+* line 480
+
+ui/views/controls/table/table_view.cc
+* modifier key for table view (?)
+* unsure what this does exactly, but seems important
+* line 98
+
+
+third_party/blink/renderer/core/editing/editing_behavior.cc
+* lets you change keybindings for webpages!
+* lines 43, 87
+
+third_party/blink/renderer/core/loader/navigation_policy.cc
+* change modifier for clicking open link as new tab
+* line 58
+
+ui/base/window_open_disposition_utils.cc
+* change modifier for clicking open link as new tab in Bookmark Bar
+
+chrome/browser/ui/views/frame/browser_root_view.cc
+* disable changing tabs with mouse wheel
+* line 249
+chrome/browser/defaults.cc
+* disable changing tabs with mouse wheel default preference
+* line 49
+
+ui/base/accelerators/accelerator.cc
+* ensure Linux actually shows command accelerator in context menu
+* by default, Linux displays nothing (e.g., 'W' instead of 'Command+W')
+* line 459
+
+chrome/browser/ui/views/renderer_context_menu/render_view_context_menu_views.cc
+* fix context menu shortcuts being hard-coded to Ctrl
+* line 149
