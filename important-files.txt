@@ -72,3 +72,7 @@ chrome/browser/ui/tabs/tab_strip_model.cc
 * line 988
 * also deals with tab close behavior
 * line 2609
+
+chrome/browser/ui/bookmarks/bookmark_utils_desktop.cc
+* start of Bookmark Bar tab opening behavior
+* line 195

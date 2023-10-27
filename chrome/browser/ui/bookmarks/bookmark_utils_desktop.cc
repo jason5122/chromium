@@ -192,6 +192,7 @@ OpenedWebContentsSet OpenAllHelper(
                           ui::PAGE_TRANSITION_AUTO_BOOKMARK);
     params.disposition = disposition;
     params.browser = browser_to_use;
+    params.tabstrip_index = browser_to_use->tab_strip_model()->active_index() + 1;
     base::WeakPtr<content::NavigationHandle> handle =
         nav_wrapper.NavigateTo(&params);
     content::WebContents* opened_tab =
