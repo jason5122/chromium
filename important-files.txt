@@ -66,3 +66,7 @@ ui/base/accelerators/accelerator.cc
 chrome/browser/ui/views/renderer_context_menu/render_view_context_menu_views.cc
 * fix context menu shortcuts being hard-coded to Ctrl
 * line 149
+
+chrome/browser/ui/tabs/tab_strip_model.cc
+* deals with new tab (Cmd+T) behavior
+* line 988
