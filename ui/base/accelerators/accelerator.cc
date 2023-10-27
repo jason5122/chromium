@@ -231,7 +231,7 @@ bool Accelerator::IsRepeat() const {
 std::u16string Accelerator::GetShortcutText() const {
   std::u16string shortcut;
 
-#if BUILDFLAG(IS_MAC)
+#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
   shortcut = KeyCodeToMacSymbol();
 #else
   shortcut = KeyCodeToName();
@@ -263,7 +263,7 @@ std::u16string Accelerator::GetShortcutText() const {
 #endif
   }
 
-#if BUILDFLAG(IS_MAC)
+#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
   shortcut = ApplyShortFormModifiers(shortcut);
 #else
   // Checking whether the character used for the accelerator is alphanumeric.
@@ -311,7 +311,7 @@ std::u16string Accelerator::GetShortcutText() const {
   return shortcut;
 }
 
-#if BUILDFLAG(IS_MAC)
+#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 // In macOS 10.13, the glyphs used for page up, page down, home, and end were
 // changed from the arrows below to new, skinny arrows. The tricky bit is that
 // the underlying Unicode characters weren't changed, just the font used. Maybe
@@ -414,15 +414,6 @@ std::u16string Accelerator::KeyCodeToName() const {
     case VKEY_F11:
       string_id = IDS_APP_F11_KEY;
       break;
-#if !BUILDFLAG(IS_MAC)
-    // On Mac, commas and periods are used literally in accelerator text.
-    case VKEY_OEM_COMMA:
-      string_id = IDS_APP_COMMA_KEY;
-      break;
-    case VKEY_OEM_PERIOD:
-      string_id = IDS_APP_PERIOD_KEY;
-      break;
-#endif
     case VKEY_MEDIA_NEXT_TRACK:
       string_id = IDS_APP_MEDIA_NEXT_TRACK_KEY;
       break;
@@ -457,7 +448,7 @@ std::u16string Accelerator::ApplyLongFormModifiers(
     result = ApplyModifierToAcceleratorString(result, IDS_APP_ALT_KEY);
 
   if (IsCmdDown()) {
-#if BUILDFLAG(IS_MAC)
+#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
     result = ApplyModifierToAcceleratorString(result, IDS_APP_COMMAND_KEY);
 #elif BUILDFLAG(IS_CHROMEOS)
     result = ApplyModifierToAcceleratorString(result, IDS_APP_SEARCH_KEY);
