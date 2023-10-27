@@ -117,7 +117,7 @@ class COMPONENT_EXPORT(UI_BASE) Accelerator {
   // Returns a string with the localized shortcut if any.
   std::u16string GetShortcutText() const;
 
-#if BUILDFLAG(IS_MAC)
+#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
   std::u16string KeyCodeToMacSymbol() const;
 #endif
   std::u16string KeyCodeToName() const;

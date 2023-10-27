@@ -153,38 +153,38 @@ bool RenderViewContextMenuViews::GetAcceleratorForCommandId(
   // that Ctrl+C, Ctrl+V, Ctrl+X, Ctrl-A, etc do what they normally do.
   switch (command_id) {
     case IDC_BACK:
-      *accel = ui::Accelerator(ui::VKEY_LEFT, ui::EF_ALT_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_OEM_4, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_UNDO:
-      *accel = ui::Accelerator(ui::VKEY_Z, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_Z, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_REDO:
       // TODO(jcampan): should it be Ctrl-Y?
       *accel = ui::Accelerator(ui::VKEY_Z,
-                               ui::EF_SHIFT_DOWN | ui::EF_CONTROL_DOWN);
+                               ui::EF_SHIFT_DOWN | ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_CUT:
-      *accel = ui::Accelerator(ui::VKEY_X, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_X, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_COPY:
-      *accel = ui::Accelerator(ui::VKEY_C, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_C, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_PASTE:
-      *accel = ui::Accelerator(ui::VKEY_V, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_V, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_PASTE_AND_MATCH_STYLE:
       *accel = ui::Accelerator(ui::VKEY_V,
-                               ui::EF_SHIFT_DOWN | ui::EF_CONTROL_DOWN);
+                               ui::EF_SHIFT_DOWN | ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_SELECTALL:
-      *accel = ui::Accelerator(ui::VKEY_A, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_A, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_ROTATECCW:
@@ -196,20 +196,20 @@ bool RenderViewContextMenuViews::GetAcceleratorForCommandId(
       return true;
 
     case IDC_FORWARD:
-      *accel = ui::Accelerator(ui::VKEY_RIGHT, ui::EF_ALT_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_OEM_6, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_PRINT:
-      *accel = ui::Accelerator(ui::VKEY_P, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_P, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_RELOAD:
-      *accel = ui::Accelerator(ui::VKEY_R, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_R, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_SAVEPLUGINAS:
     case IDC_SAVE_PAGE:
-      *accel = ui::Accelerator(ui::VKEY_S, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_S, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
 #if BUILDFLAG(ENABLE_LENS_DESKTOP_GOOGLE_BRANDED_FEATURES)
@@ -256,7 +256,7 @@ bool RenderViewContextMenuViews::GetAcceleratorForCommandId(
     }
 
     case IDC_VIEW_SOURCE:
-      *accel = ui::Accelerator(ui::VKEY_U, ui::EF_CONTROL_DOWN);
+      *accel = ui::Accelerator(ui::VKEY_U, ui::EF_PLATFORM_ACCELERATOR);
       return true;
 
     case IDC_CONTENT_CONTEXT_EMOJI:
