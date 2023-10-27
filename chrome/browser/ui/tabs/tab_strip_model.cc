@@ -985,7 +985,6 @@ void TabStripModel::AddWebContents(
     // Tab to quickly look up something. When this Tab is closed, the old one
     // is re-activated, not the next-adjacent.
     inherit_opener = true;
-    index = active_index() + 1;
   }
   WebContents* raw_contents = contents.get();
   InsertWebContentsAtImpl(index, std::move(contents),
@@ -2607,7 +2606,7 @@ void TabStripModel::EnsureGroupContiguity(int index) {
 int TabStripModel::GetTabIndexAfterClosing(int index,
                                            int removing_index) const {
   if (removing_index < index)
-    index = std::max(0, index - 1);
+    index = std::max(0, index - 2);
   return index;
 }
 
