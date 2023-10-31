@@ -59,7 +59,7 @@ String NavigatorID::appVersion() {
 }
 
 String NavigatorID::platform() const {
-#if BUILDFLAG(IS_MAC)
+#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
   // Match Safari and Mozilla on Mac x86.
   return "MacIntel";
 #elif BUILDFLAG(IS_WIN)

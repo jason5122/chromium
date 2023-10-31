@@ -25,7 +25,7 @@ namespace {
 String GetReducedNavigatorPlatform() {
 #if BUILDFLAG(IS_ANDROID)
   return "Linux armv81";
-#elif BUILDFLAG(IS_MAC)
+#elif BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
   return "MacIntel";
 #elif BUILDFLAG(IS_WIN)
   return "Win32";
@@ -47,7 +47,8 @@ NavigatorBase::NavigatorBase(ExecutionContext* context)
 
 String NavigatorBase::userAgent() const {
   ExecutionContext* execution_context = GetExecutionContext();
-  return execution_context ? execution_context->UserAgent() : String();
+  // return execution_context ? execution_context->UserAgent() : String();
+  return "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36";
 }
 
 String NavigatorBase::platform() const {
